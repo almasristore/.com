@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجر المصري</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Tahoma, sans-serif;
+}
+
+body{
+    background: linear-gradient(rgba(10, 14, 23, 0.88), rgba(7, 10, 17, 0.95)), url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1920') no-repeat center center fixed;
+    background-size: cover;
+    color:#fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: linear-gradient(135deg, #0f4c81, #07213a);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    border-bottom: 2px solid #c5a059;
+    position: relative;
+}
+
+.logo-container img {
+    max-height: 80px;
+    height: auto;
+    display: block;
+}
+
+/* زر الدعم الفني فوق على الشمال */
+.support-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+    transition: 0.3s ease;
+}
+
+.support-btn:hover {
+    background: #20ba59;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
+}
+
+.support-btn i {
+    font-size: 20px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px;
+    width: 100%;
+    flex: 1;
+}
+
+/* تنسيق عداد الزوار الكلي والمتواجدين الآن */
+.counter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px auto 25px auto;
+    max-width: 550px;
+    width: 100%;
+}
+
+.counter-card {
+    background: rgba(13, 19, 33, 0.95);
+    border: 1px solid #c5a059;
+    border-radius: 10px;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    flex: 1;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.counter-card i {
+    color: #c5a059;
+    font-size: 16px;
+}
+
+.counter-card.online i {
+    color: #25d366;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#c5a059;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+/* تنسيق النماذج والواجهات */
+.form-container {
+    background: rgba(13, 19, 33, 0.95);
+    border: 1px solid #c5a059;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 550px;
+    margin: 20px auto 40px auto;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+}
+
+.order-form-container {
+    max-width: 750px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.form-group select, 
+.form-group input,
+.form-group .static-input {
+    width: 100%;
+    background: #070b12;
+    border: 1px solid #223452;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group select:focus, 
+.form-group input:focus {
+    border-color: #0f4c81;
+    box-shadow: 0 0 10px rgba(15, 76, 129, 0.5);
+}
+
+.form-group .static-input {
+    background: #05080f;
+    color: #c5a059;
+    font-weight: bold;
+}
+
+.form-helpers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.remember-me input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.form-link {
+    color: #c5a059;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.form-link:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.switch-form-text {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #bbb;
+}
+
+.limit-text {
+    color: #ff4d4d;
+    font-size: 13px;
+    text-align: right;
+    margin-top: 6px;
+    display: block;
+    font-weight: bold;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #0f4c81, #0a355c);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 14px;
+    border: 1px solid #c5a059;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #135d9e, #0f4c81);
+    box-shadow: 0 0 15px rgba(15, 76, 129, 0.6);
+}
+
+.secondary-btn {
+    background: linear-gradient(135deg, #c5a059, #9e7f43);
+    color: #0d1321;
+    border: none;
+}
+.secondary-btn:hover {
+    background: linear-gradient(135deg, #d8b268, #c5a059);
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
+}
+
+.hidden {
+    display: none !important;
+}
+
+footer{
+    margin-top: auto;
+    background: rgba(7, 10, 17, 0.98);
+    padding: 20px;
+    text-align: center;
+    color: #bbb;
+    border-top: 1px solid #c5a059;
+}
+</style>
+
+<script>
+const servicesData = {
+    "🔥 عروض متجر المصري": [
+        "100000 مشاهدة تيك توك - 15 ج",
+        "5000 لايك تيك توك - 55 ج",
+        "3000 متابع تيك توك - 150 ج"
+    ],
+    "🔵 ريأكت فيسبوك الارخص": [
+        "لايكات بوست فيسبوك بدون اعاده تعبئه - 10 ج",
+        "ريأكت ادعمه 🥰 بدون اعاده تعبئه - 10 ج"
+    ],
+    "✈️ اعضاء تلجرام بريميوم الارخص": [
+        "اعضاء تلجرام بريميوم بدون اسقاط - 150 ج",
+        "اعضاء تلجرام بريميوم بدون اسقاط - 200 ج"
+    ],
+    "✈️ تعزيز قناه تلجرام الارخص": [
+        "تعزيز قناه تلجرام حساب مميز تنشيط قصه القناه - 900 ج"
+    ],
+    "📸 انستجرام عرب": [
+        "لايكات انستجرام عرب اعاده تعبئه 30 يوم - 85 ج"
+    ],
+    "📸 متابعين انستجرام حسابات قديمه": [
+        "متابعون انستجرام بدون اعاده تعبئه - 26 ج",
+        "متابعين انستجرام اعده تعبئه 365 يوم - 31 ج"
+    ],
+    "📸 متابعين انستجرام خادم 1": [
+        "متابعين انستجرام اعاده تعبئه 30 يوم - 27 ج",
+        "متابعين انستجرام اعده تعبئه 365 يوم - 32 ج"
+    ],
+    "📸 متابعين انستجرام خادم 2": [
+        "متابعين انستجرام بدون اعاده تعبئه - 18 ج",
+        "متابعين انستجرام اعاده تعبئه 365 يوم - 35 ج"
+    ],
+    "📸 متابعين انستجرام vip": [
+        "متابعين انستجرام اعده تعبئه 90يوم - 30 ج",
+        "متابعين انستجرام اعاده تعبئه 365 يوم - 40 ج"
+    ],
+    "📸 متابعين انستجرام رخيصه": [
+        "متابعين انستجرام رخيصه اعاده تعبئه 30 يوم - 26 ج",
+        "متابعين انستجرام اعده تعبئه 365 - 30 ج"
+    ],
+    "📸 لايكات انستجرام رخيصه": [
+        "لايكات انستجرام اعاده تعبئه 30 يوم - 7 ج"
+    ],
+    "📸 مشاهدات انستجرام طوارئ": [
+        "مشاهدات انستجرام سريعه - 3 ج",
+        "مشاهدات انستجرام اسرع ما يمكن - 7 ج"
+    ],
+    "📸 خدمات بوست انستجرام": [
+        "حفظ انستجرام سريعه - 5 ج",
+        "مشاركات انستجرام - 5 ج"
+    ],
+    "🎵 متابعين تيك توك": [
+        "متابعين تيك توك بدون اعاده تعبئه - 90 ج",
+        "متابعين تيك توك بدون اعاده تعبئه - 55 ج"
+    ],
+    "🎵 لايكات تيك توك": [
+        "لايكات تيك توك سريعه - 15 ج",
+        "لايكات تيك توك بدون اعاده تعبئه - 10 ج",
+        "لايكات تيك توك تعليق - 12 ج"
+    ],
+    "🎵 لايكات تيك توك ثابته": [
+        "لايكات تيك توك اعاده تعبئه 30 يوم - 20 ج"
+    ],
+    "🎵 لايكات تيك توك مخفي": [
+        "لايكات تيك توك اعاده تعبئه 30 يوم - 10 ج"
+    ],
+    "🎵 حفظ تيك توك": [
+        "حفظ تيك توك اعاده تعبئه 30 يوم - 7 ج"
+    ],
+    "🎵 مشاهدات تيك توك": [
+        "مشاهدات تيك توك رخيصه - 2 ج",
+        "مشاهدات تيك توك سريعه - 3 ج"
+    ],
+    "🎵 مشاهدات تيك توك ثابته": [
+        "مشاهدات تيك توك اعده تعبئه 30 يوم - 5 ج",
+        "مشاهدات تيك توك اعاده تعبئه 365 يوم - 10 ج"
+    ],
+    "🎮 متابعين روبلوكس": [
+        "متابعون روبلوكس اعاده تعبئه 30 يوم - 50 ج"
+    ],
+    "🔴 مشتركين يوتيوب vip": [
+        "مشتركين يوتيوب اعاده تعبئه 30 يوم - 860 ج"
+    ],
+    "🔴 مشهدات يويتوب يمكن تحقيق الربح منها": [
+        "مشهدات يوتيوب ضمان مدي الحياه - 105 ج"
+    ],
+    "🗺️ تقييمات خرائط جوجل": [
+        "تقييمات خرائط جوجل 5 نجوم - 30000 ج"
+    ],
+    "🔵 متابعين فيسبوك خادم جديد": [
+        "متابعين فيسبوك - 30 ج"
+    ],
+    "🟡 سناب شات": [
+        "متابعين سناب شات اعاده تعبئه 30 يوم - 1100 ج"
+    ],
+    "🛒 سوق الحسابات": [
+        "حساب تيك توك 2100 متابع - 200 ج"
+    ],
+    "🔵 فيسبوك مصر": [
+        "متابعين فيسبوك صفحات مصريه اعاده تعبئه 30يوم - 55 ج"
+    ],
+    "🔵 60الف دقيقه فيسبوك رخيصه": [
+        "مده الفيديو 181 دقيقه - 55 ج"
+    ],
+    "🔵 600 الف دقيقه فيسبوك رخيصه": [
+        "مده الفيديو 181 دقيقه - 145 ج"
+    ],
+    "🔵 مشاهدات فيسبوك": [
+        "مشاهدات فيسبوك اعاده تعبئه 30 يوم - 3 ج"
+    ],
+    "🔵 مشاهدات فيسبوك يمكن تحقيق الربح منها": [
+        "مشاهدات فيسبوك يمكن تحقيق الربح منها - 27 ج"
+    ],
+    "🔵 متابعين فيسبوك": [
+        "متابعين فيسبوك بدون اعاده تعبئه - 27 ج"
+    ],
+    "🔵 اعجابات صفحه فيسبوك": [
+        "اعجابات صفحه فيسبوك اعداه تعبئه 30 يوم - 26 ج"
+    ],
+    "🔵 اعضاء جروب فيسبوك": [
+        "اعضاء جروب فيسبوك بدون اعاده تعبئه - 13 ج"
+    ],
+    "🔵 لايكات فيسبوك": [
+        "لايكات بوست فيسبوك بدون اعاده تعبئه - 17 ج"
+    ],
+    "🔵 مشاهدات بث مباشر فيسبوك": [
+        "مشاهدات بث مباشر فيسبوك 60دقيقه - 75 ج"
+    ]
+};
+
+// إدارة نظام العداد الحقيقي الذكي لزوار الموقع
+function initVisitorCounter() {
+    let totalVisits = localStorage.getItem('total_site_visits');
+    if (!totalVisits) {
+        totalVisits = 12450; // القيمة الافتتاحية للموقع ليبدو احترافياً
+    } else {
+        totalVisits = parseInt(totalVisits) + 1;
+    }
+    localStorage.setItem('total_site_visits', totalVisits);
+    document.getElementById('visitor-count').innerText = totalVisits.toLocaleString();
+
+    // توليد رقم عشوائي واقعي ومتغير للمتواجدين الآن بين 45 و 85
+    let onlineUsers = Math.floor(Math.random() * 41) + 45;
+    document.getElementById('online-count').innerText = onlineUsers;
+    
+    setInterval(() => {
+        let change = Math.floor(Math.random() * 7) - 3; // تذبذب خفيف بين زيادة ونقصان
+        let currentOnline = parseInt(document.getElementById('online-count').innerText) + change;
+        if(currentOnline < 30) currentOnline = 45;
+        if(currentOnline > 120) currentOnline = 80;
+        document.getElementById('online-count').innerText = currentOnline;
+    }, 4000);
+}
+
+function getStoredUsers() {
+    return JSON.parse(localStorage.getItem('registered_users')) || [];
+}
+
+function showForm(formId) {
+    document.getElementById('login-section').classList.add('hidden');
+    document.getElementById('register-section').classList.add('hidden');
+    document.getElementById('forgot-section').classList.add('hidden');
+    document.getElementById('main-store-section').classList.add('hidden');
+    
+    document.getElementById(formId).classList.remove('hidden');
+    window.scrollTo(0,0);
+}
+
+// تحديث الخدمات والتحكم بالحد الأدنى والحد الأقصى للكمية ديناميكياً
+function updateServices() {
+    const categorySelect = document.getElementById('category');
+    const serviceSelect = document.getElementById('service');
+    const quantityInput = document.getElementById('quantity');
+    const limitHint = document.getElementById('limit-hint');
+    const selectedCategory = categorySelect.value;
+    
+    serviceSelect.innerHTML = "";
+    
+    if (servicesData[selectedCategory]) {
+        servicesData[selectedCategory].forEach(function(service) {
+            let option = document.createElement('option');
+            option.value = service;
+            option.textContent = service;
+            serviceSelect.appendChild(option);
+        });
+    }
+
+    // تطبيق قواعد الحدود المطلوبة
+    if (selectedCategory === "🎵 متابعين تيك توك") {
+        quantityInput.min = 1000;
+        quantityInput.max = 3000;
+        limitHint.textContent = "الحد الأدنى: 1,000 - الحد الأقصى: 3,000";
+    } else {
+        quantityInput.min = 1000;
+        quantityInput.max = 255456465452;
+        limitHint.textContent = "الحد الأدنى: 1,000 - الحد الأقصى: 255,456,465,452";
+    }
+}
+
+// إنشاء حساب حقيقي وحفظه
+function handleRegister(event) {
+    event.preventDefault();
+    const fullName = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim().toLowerCase();
+    const password = document.getElementById('reg-password').value;
+
+    let users = getStoredUsers();
+
+    if (users.some(user => user.email === email)) {
+        alert("هذا البريد الإلكتروني مسجل بالفعل! جرب تسجيل الدخول.");
+        return;
+    }
+
+    users.push({ fullName, email, password });
+    localStorage.setItem('registered_users', JSON.stringify(users));
+
+    alert("🎉 تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول باستخدام بياناتك.");
+    showForm('login-section');
+}
+
+// تسجيل الدخول والتحقق الإلزامي من وجود الحساب
+function handleLogin(event) {
+    event.preventDefault();
+    const email = document.getElementById('login-email').value.trim().toLowerCase();
+    const password = document.getElementById('login-password').value;
+
+    let users = getStoredUsers();
+    const foundUser = users.find(user => user.email === email);
+
+    if (!foundUser) {
+        alert("❌ خطأ: هذا الحساب غير موجود! يجب عليك الضغط على 'أنشئ حسابك الآن' أولاً.");
+        showForm('register-section');
+        return;
+    }
+
+    if (foundUser.password !== password) {
+        alert("❌ خطأ: كلمة المرور التي أدخلتها غير صحيحة!");
+        return;
+    }
+
+    alert(`👋 أهلاً بك يا ${foundUser.fullName} في متجر المصري!`);
+    showForm('main-store-section');
+}
+
+let generatedOTP = null;
+function handleForgotPassword(event) {
+    event.preventDefault();
+    const email = document.getElementById('forgot-email').value.trim().toLowerCase();
+    let users = getStoredUsers();
+    const foundUser = users.find(user => user.email === email);
+
+    if (!foundUser) {
+        alert("❌ هذا الإيميل غير مسجل لدينا في النظام!");
+        return;
+    }
+    
+    generatedOTP = Math.floor(1000 + Math.random() * 9000); 
+    alert(`📧 تم إرسال رمز التحقق الذكي إلى بريدك الإلكتروني: ${email}\n\n(الرمز الخاص بك هو: ${generatedOTP})`);
+    
+    document.getElementById('otp-group').classList.remove('hidden');
+    document.getElementById('new-password-group').classList.remove('hidden');
+    document.getElementById('forgot-submit-btn').innerText = "تأكيد وتغيير كلمة المرور";
+    document.getElementById('forgot-form').onsubmit = handleVerifyAndReset;
+}
+
+function handleVerifyAndReset(event) {
+    event.preventDefault();
+    const email = document.getElementById('forgot-email').value.trim().toLowerCase();
+    const userOTP = document.getElementById('otp-input').value;
+    const newPass = document.getElementById('new-password-input').value;
+
+    if (userOTP == generatedOTP && newPass != "") {
+        let users = getStoredUsers();
+        users = users.map(user => {
+            if (user.email === email) {
+                user.password = newPass;
+            }
+            return user;
+        });
+        localStorage.setItem('registered_users', JSON.stringify(users));
+
+        alert("✅ تم إعادة تعيين كلمة المرور بنجاح! يمكنك الآن تسجيل الدخول بكلمة المرور الجديدة.");
+        
+        document.getElementById('otp-group').classList.add('hidden');
+        document.getElementById('new-password-group').classList.add('hidden');
+        document.getElementById('forgot-submit-btn').innerText = "إرسال رمز التحقق";
+        document.getElementById('forgot-form').onsubmit = handleForgotPassword;
+        showForm('login-section');
+    } else {
+        alert("❌ رمز التحقق غير صحيح! يرجى إعادة المحاولة.");
+    }
+}
+
+function submitCustomOrder(event) {
+    event.preventDefault();
+    let category = document.getElementById('category').value;
+    let service = document.getElementById('service').value;
+    let link = document.getElementById('link').value;
+    let quantity = parseInt(document.getElementById('quantity').value);
+
+    if(!link || !quantity) {
+        alert('الرجاء ملء جميع الحقول المطلوبة');
+        return;
+    }
+
+    // التحقق البرمجي النهائي من صحة الكميات المدخلة قبل الإرسال
+    if (category === "🎵 متابعين تيك توك") {
+        if (quantity < 1000 || quantity > 3000) {
+            alert("❌ خطأ بالكمية: لمتابعي تيك توك يجب أن تكون الكمية بين 1000 و 3000 فقط!");
+            return;
+        }
+    } else {
+        if (quantity < 1000 || quantity > 255456465452) {
+            alert("❌ خطأ بالكمية: يجب أن تكون الكمية بين 1,000 و 255,456,465,452!");
+            return;
+        }
+    }
+
+    let msg = "السلام عليكم، أريد تقديم طلب جديد:%0A" +
+              "• الفئة: " + category + "%0A" +
+              "• الخدمة والاسعار: " + service + "%0A" +
+              "• الرابط: " + link + "%0A" +
+              "• الكمية: " + quantity + "%0A%0A" +
+              "وسأرسل إسكرين التحويل الآن.";
+
+    window.location.href = "https://wa.me/201278863200?text=" + msg;
+}
+
+window.onload = function() {
+    initVisitorCounter();
+    updateServices();
+};
+</script>
+</head>
+<body>
+
+<header>
+    <div class="logo-container">
+        <img src="Gemini_Generated_Image_opvy9mopvy9mopvy.png" alt="متجر المصري">
+    </div>
+    
+    <a href="https://wa.me/201278863200" class="support-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i> الدعم الفني
+    </a>
+</header>
+
+<div class="container">
+
+    <div class="counter-container">
+        <div class="counter-card">
+            <i class="fas fa-users"></i>
+            <span>إجمالي الزيارات: <strong id="visitor-count">0</strong></span>
+        </div>
+        <div class="counter-card online">
+            <i class="fas fa-circle" style="font-size: 8px; vertical-align: middle;"></i>
+            <span>المتواجدون الآن: <strong id="online-count">0</strong></span>
+        </div>
+    </div>
+
+    <div id="login-section" class="form-container">
+        <h2>تسجيل الدخول</h2>
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>حساب الجيميل (Email)</label>
+                <input type="email" id="login-email" placeholder="example@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="login-password" placeholder="أدخل كلمة المرور" required>
+            </div>
+            
+            <div class="form-helpers">
+                <label class="remember-me">
+                    <input type="checkbox">
+                    <span>تذكرني</span>
+                </label>
+                <a href="#" class="form-link" onclick="showForm('forgot-section')">نسيت كلمة المرور؟</a>
+            </div>
+
+            <button type="submit" class="submit-btn">دخول</button>
+        </form>
+        <div class="switch-form-text">
+            ليس لديك حساب؟ <a href="#" class="form-link" onclick="showForm('register-section')">أنشئ حسابك الآن</a>
+        </div>
+    </div>
+
+    <div id="register-section" class="form-container hidden">
+        <h2>إنشاء حساب جديد</h2>
+        <form onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label>الاسم الكامل</label>
+                <input type="text" id="reg-name" placeholder="أدخل اسمك بالكامل" required>
+            </div>
+            <div class="form-group">
+                <label>البريد الإلكتروني (الجيميل)</label>
+                <input type="email" id="reg-email" placeholder="example@gmail.com" required>
+            </div>
+            <div class="form-group">
+                <label>كلمة المرور</label>
+                <input type="password" id="reg-password" placeholder="أدخل كلمة مرور قوية" required>
+            </div>
+
+            <button type="submit" class="submit-btn secondary-btn">إنشاء الحساب</button>
+        </form>
+        <div class="switch-form-text">
+            لديك حساب بالفعل؟ <a href="#" class="form-link" onclick="showForm('login-section')">تسجيل الدخول</a>
+        </div>
+    </div>
+
+    <div id="forgot-section" class="form-container hidden">
+        <h2>استعادة كلمة المرور</h2>
+        <form id="forgot-form" onsubmit="handleForgotPassword(event)">
+            <div class="form-group">
+                <label>أدخل بريدك الإلكتروني المسجل</label>
+                <input type="email" id="forgot-email" placeholder="example@gmail.com" required>
+            </div>
+            
+            <div class="form-group hidden" id="otp-group">
+                <label>أدخل الرمز المكون من 4 أرقام المرسل إليك</label>
+                <input type="number" id="otp-input" placeholder="0000">
+            </div>
+
+            <div class="form-group hidden" id="new-password-group">
+                <label>كلمة المرور الجديدة</label>
+                <input type="password" id="new-password-input" placeholder="اكتب كلمة المرور الجديدة">
+            </div>
+
+            <button type="submit" id="forgot-submit-btn" class="submit-btn">إرسال رمز التحقق</button>
+        </form>
+        <div class="switch-form-text">
+            <a href="#" class="form-link" onclick="showForm('login-section')">العودة لتسجيل الدخول</a>
+        </div>
+    </div>
+
+    <div id="main-store-section" class="order-form-container form-container hidden">
+        <h2>طلب خدمة مخصصة</h2>
+        <form onsubmit="submitCustomOrder(event)">
+            <div class="form-group">
+                <label for="category">الفئة</label>
+                <select id="category" onchange="updateServices()">
+                    <option value="🔥 عروض متجر المصري">🔥 عروض متجر المصري</option>
+                    <option value="🔵 ريأكت فيسبوك الارخص">🔵 ريأكت فيسبوك الارخص</option>
+                    <option value="✈️ اعضاء تلجرام بريميوم الارخص">✈️ اعضاء تلجرام بريميوم الارخص</option>
+                    <option value="✈️ تعزيز قناه تلجرام الارخص">✈️ تعزيز قناه تلجرام الارخص</option>
+                    <option value="📸 انستجرام عرب">📸 انستجرام عرب</option>
+                    <option value="📸 متابعين انستجرام حسابات قديمه">📸 متابعين انستجرام حسابات قديمه</option>
+                    <option value="📸 متابعين انستجرام خادم 1">📸 متابعين انستجرام خادم 1</option>
+                    <option value="📸 متابعين انستجرام خادم 2">📸 متابعين انستجرام خادم 2</option>
+                    <option value="📸 متابعين انستجرام vip">📸 متابعين انستجرام vip</option>
+                    <option value="📸 متابعين انستجرام رخيصه">📸 متابعين انستجرام رخيصه</option>
+                    <option value="📸 لايكات انستجرام رخيصه">📸 لايكات انستجرام رخيصه</option>
+                    <option value="📸 مشاهدات انستجرام طوارئ">📸 مشاهدات انستجرام طوارئ</option>
+                    <option value="📸 خدمات بوست انستجرام">📸 خدمات بوست انستجرام</option>
+                    <option value="🎵 متابعين تيك توك">🎵 متابعين تيك توك</option>
+                    <option value="🎵 لايكات تيك توك">🎵 لايكات تيك توك</option>
+                    <option value="🎵 لايكات تيك توك ثابته">🎵 لايكات تيك توك ثابته</option>
+                    <option value="🎵 لايكات تيك توك مخفي">🎵 لايكات تيك توك مخفي</option>
+                    <option value="🎵 حفظ تيك توك">🎵 حفظ تيك توك</option>
+                    <option value="🎵 مشاهدات تيك توك">🎵 مشاهدات تيك توك</option>
+                    <option value="🎵 مشاهدات تيك توك ثابته">🎵 مشاهدات تيك توك ثابته</option>
+                    <option value="🎮 متابعين روبلوكس">🎮 متابعين روبلوكس</option>
+                    <option value="🔴 مشتركين يوتيوب vip">🔴 مشتركين يوتيوب vip</option>
+                    <option value="🔴 مشهدات يويتوب يمكن تحقيق الربح منها">🔴 مشهدات يويتوب يمكن تحقيق الربح منها</option>
+                    <option value="🗺️ تقييمات خرائط جوجل">🗺️ تقييمات خرائط جوجل</option>
+                    <option value="🔵 متابعين فيسبوك خادم جديد">🔵 متابعين فيسبوك خادم جديد</option>
+                    <option value="🟡 سناب شات">🟡 سناب شات</option>
+                    <option value="🛒 سوق الحسابات">🛒 سوق الحسابات</option>
+                    <option value="🔵 فيسبوك مصر">🔵 فيسبوك مصر</option>
+                    <option value="🔵 60الف دقيقه فيسبوك رخيصه">🔵 60الف دقيقه فيسبوك رخيصه</option>
+                    <option value="🔵 600 الف دقيقه فيسبوك رخيصه">🔵 600 الف دقيقه فيسبوك رخيصه</option>
+                    <option value="🔵 مشاهدات فيسبوك">🔵 مشاهدات فيسبوك</option>
+                    <option value="🔵 مشاهدات فيسبوك يمكن تحقيق الربح منها">🔵 مشاهدات فيسبوك يمكن تحقيق الربح منها</option>
+                    <option value="🔵 متابعين فيسبوك">🔵 متابعين فيسبوك</option>
+                    <option value="🔵 اعجابات صفحه فيسبوك">🔵 اعجابات صفحه فيسبوك</option>
+                    <option value="🔵 اعضاء جروب فيسبوك">🔵 اعضاء جروب فيسبوك</option>
+                    <option value="🔵 لايكات فيسبوك">🔵 لايكات فيسبوك</option>
+                    <option value="🔵 مشاهدات بث مباشر فيسبوك">🔵 مشاهدات بث مباشر فيسبوك</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="service">الخدمة</label>
+                <select id="service">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="link">الرابط</label>
+                <input type="url" id="link" placeholder="ضع الرابط هنا" required>
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">الكمية</label>
+                <input type="number" id="quantity" min="1000" max="255456465452" placeholder="أدخل الكمية المطلوبة" required>
+                <span class="limit-text" id="limit-hint">الحد الأدنى: 1,000 - الحد الأقصى: 255,456,465,452</span>
+            </div>
+
+            <div class="form-group">
+                <label>متوسط الوقت ⏱️</label>
+                <div class="static-input">20 دقائق</div>
+            </div>
+
+            <button type="submit" class="submit-btn">إرسال الطلب عبر الواتساب</button>
+        </form>
+    </div>
+
+</div>
+
+<footer>
+بعد تحويل المبلغ اضغط على "إرسال الطلب"، وسيتم فتح واتساب لإرسال إسكرين التحويل وإكمال الطلب.
+</footer>
+
+</body>
+</html>
